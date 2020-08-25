@@ -1,0 +1,13 @@
+body {
+	margin: 0;
+	font-family: "Roboto", sans-serif;
+	background-image: linear-gradient(to right, #51d6a1, #44a6d0);
+}
+
+button {
+	cursor: pointer;
+}
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
