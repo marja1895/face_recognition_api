@@ -22,20 +22,20 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-app.get('/', (req, res) => {
+app.get('https://face-detectormv.herokuapp.com/', (req, res) => {
 	res.send(db.users)
 })
-app.post('/signin', signin.handleSignin(db, bcrypt))
-app.post('/register', (req, res) => {
+app.post('https://face-detectormv.herokuapp.com/signin', signin.handleSignin(db, bcrypt))
+app.post('https://face-detectormv.herokuapp.com/register', (req, res) => {
 	register.handleRegister(req, res, db, bcrypt)
 })
-app.get('/profile/:id', (req, res) => {
+app.get('https://face-detectormv.herokuapp.com/profile/:id', (req, res) => {
 	profile.handleProfileGet(req, res, db)
 })
-app.put('/image', (req, res) => {
+app.put('https://face-detectormv.herokuapp.com/image', (req, res) => {
 	image.handleImage(req, res, db)
 })
-app.post('/imageurl', (req, res) => {
+app.post('https://face-detectormv.herokuapp.com/imageurl', (req, res) => {
 	image.handleApiCall(req, res)
 })
 
