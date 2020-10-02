@@ -3,7 +3,8 @@ const handleRegister = (req, res, db, bcrypt) => {
 	if (!email || !name || !password) {
 		return res.status(400).json('incorrect form submission')
 	}
-	const hash = bcrypt.hashSync(password)
+	const hash = bcrypt.hashSync(password);
+	// maybe problem starts here, newxjy, Javaid Khan - same problem
 	db.transaction((trx) => {
 		trx
 			.insert({
@@ -30,5 +31,5 @@ const handleRegister = (req, res, db, bcrypt) => {
 }
 
 module.exports = {
-	handleRegister: handleRegister,
+	handleRegister
 }
