@@ -1,7 +1,7 @@
+const cors = require('cors')
 const express = require('express')
 const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt-nodejs')
-const cors = require('cors')
 const knex = require('knex')
 
 const register = require('./controllers/register')
@@ -17,25 +17,26 @@ const db = knex({
 	},
 })
 
-const app = express()
+let app = express();
+app.use(cors());
+app.options('*', cors())
 
-app.use(cors())
 app.use(bodyParser.json())
 
-app.get('https://face-detectormv.herokuapp.com/', (req, res) => {
+app.get('/', (req, res) => {
 	res.send(db.users)
 })
-app.post('https://face-detectormv.herokuapp.com/signin', signin.handleSignin(db, bcrypt))
-app.post('https://face-detectormv.herokuapp.com/register', (req, res) => {
+app.post('/signin', signin.handleSignin(db, bcrypt))
+app.post('/register', (req, res) => {
 	register.handleRegister(req, res, db, bcrypt)
 })
-app.get('https://face-detectormv.herokuapp.com/profile/:id', (req, res) => {
+app.get('/profile/:id', (req, res) => {
 	profile.handleProfileGet(req, res, db)
 })
-app.put('https://face-detectormv.herokuapp.com/image', (req, res) => {
+app.put('/image', (req, res) => {
 	image.handleImage(req, res, db)
 })
-app.post('https://face-detectormv.herokuapp.com/imageurl', (req, res) => {
+app.post('/imageurl', (req, res) => {
 	image.handleApiCall(req, res)
 })
 
