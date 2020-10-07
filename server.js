@@ -19,7 +19,12 @@ const db = knex({
 
 const app = express();
 app.use(cors());
-app.options('*', cors())
+app.options(cors(
+	{
+		origin: ['https://face-detectormv.herokuapp.com'],
+		credentials: true
+	}
+))
 
 app.use(bodyParser.json())
 
